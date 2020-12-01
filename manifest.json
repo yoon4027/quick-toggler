@@ -1,0 +1,7 @@
+{
+	"name": "Quick Toggler",
+	"description": "Adds two hotkeys to disable plugins and themes quickly (F6 and F7, respectively)",
+	"author": "ezist#7571",
+	"version": "1.0.0",
+	"license": "ISC"
+}
