@@ -19,7 +19,7 @@ module.exports = class QuickToggler extends Plugin {
         this._pluginsEnabled = !this._pluginsEnabled
         break
       case 'F7': {
-        powercord.styleManager.themes.forEach(v => v.entityID && powercord.styleManager[this._themesEnabled ? 'disable' : 'enable'](v.entityID))
+        powercord.styleManager[this._themesEnabled ? 'unloadThemes' : 'loadThemes']()
 
         let moduleManager = powercord.pluginManager.get('pc-moduleManager')
         if (this._themesEnabled)
