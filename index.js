@@ -13,7 +13,7 @@ module.exports = class QuickToggler extends Plugin {
     switch (e.code) {
       case 'F6':
         powercord.pluginManager.plugins.forEach(v => {
-          if (v.entityID.startsWith('pc-')) return
+          if (v.entityID.startsWith('pc-') || v.entityID === 'quick-toggler') return
           powercord.pluginManager[this._pluginsEnabled ? 'disable' : 'enable'](v.entityID)
         })
         this._pluginsEnabled = !this._pluginsEnabled
