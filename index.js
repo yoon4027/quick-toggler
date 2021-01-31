@@ -4,6 +4,7 @@ module.exports = class QuickToggler extends Plugin {
   async startPlugin () {
     this._themesEnabled = true
     this._pluginsEnabled = true
+    this._enabledPlugins = []
     document.addEventListener('keydown', this.onKeyDownWrapper.bind(this))
   }
 
@@ -12,9 +13,14 @@ module.exports = class QuickToggler extends Plugin {
   onKeyDown (e) {
     switch (e.code) {
       case 'F6':
-        powercord.pluginManager.plugins.forEach(v => {
-          if (v.entityID.startsWith('pc-') || v.entityID === 'quick-toggler') return
-          powercord.pluginManager[this._pluginsEnabled ? 'disable' : 'enable'](v.entityID)
+        if (this._pluginsEnabled) {
+          this._enabledPlugins = Array.from(powercord.pluginManager.plugins.values())
+            .filter(p => p.ready)
+            .map(p => p.entityID)
+        }
+        this._enabledPlugins.forEach(v => {
+          if (v.startsWith('pc-') || v === 'quick-toggler') return
+          powercord.pluginManager[this._pluginsEnabled ? 'disable' : 'enable'](v)
         })
         this._pluginsEnabled = !this._pluginsEnabled
         break
