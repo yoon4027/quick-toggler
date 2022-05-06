@@ -67,7 +67,7 @@ module.exports = class QuickToggler extends Plugin {
 
         const themeToast = `toggler-toast-theme-${Date.now()}`;
 
-        powercord.api.notices.sendToast(plugthemeToastinToast, {
+        powercord.api.notices.sendToast(themeToast, {
           header: this._pluginsEnabled
             ? "Themes have been enabled"
             : "Themes now have been disabled",
